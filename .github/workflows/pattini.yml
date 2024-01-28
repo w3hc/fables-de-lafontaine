@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pattini app
-        uses: w3hc/pattini@v0.0.3 
+        uses: w3hc/pattini@vTest
         with:
           parameter1: '12'
           parameter2: '0x13'
