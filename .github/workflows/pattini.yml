@@ -11,5 +11,5 @@ jobs:
       - name: Pattini app
         uses: w3hc/pattini@vTest
         with:
-          parameter1: '12'
-          parameter2: '0x13'
+          param1: '12'
+          param2: '0x...'
