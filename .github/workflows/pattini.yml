@@ -1,7 +1,8 @@
 name: Run Pattini
 
 on:
-  push:
+   pull_request:
+    types: [closed]
     branches: "*"
 
 jobs:
@@ -11,5 +12,5 @@ jobs:
       - name: Pattini app
         uses: w3hc/pattini@vTest
         with:
-          ISSUE_NUMBER: ${{ github.event.push.head_commit.message }}
-          PRIVATE_KEY: "0x123"
+          ISSUE_NUMBER: ${{ github.event.pull_request.number }}
+          PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
