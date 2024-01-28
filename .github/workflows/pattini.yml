@@ -11,5 +11,5 @@ jobs:
       - name: Pattini app
         uses: w3hc/pattini@vTest
         with:
-          issue_number: "13"
-          private_key: '0x...'
+          ISSUE_NUMBER: "13"
+          PRIVATE_KEY: '0x...'
