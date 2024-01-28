@@ -11,5 +11,5 @@ jobs:
       - name: Pattini app
         uses: w3hc/pattini@vTest
         with:
-          ISSUE_NUMBER: "13"
-          PRIVATE_KEY: '0x...'
+          ISSUE_NUMBER: ${{ github.event.push.head_commit.message }}
+          PRIVATE_KEY: 0x123
