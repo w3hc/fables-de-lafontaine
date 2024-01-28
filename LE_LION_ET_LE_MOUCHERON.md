@@ -68,7 +68,7 @@ L'embuscade d'une araignée ;
 
 Il y rencontre aussi sa fin.
 
-
+--- 
 
 Quelle chose par là nous peut être enseignée ?
 
