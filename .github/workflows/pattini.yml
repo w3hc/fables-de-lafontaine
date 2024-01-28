@@ -3,7 +3,7 @@ name: Run Pattini
 on:
    pull_request:
     types: [closed]
-    branches: "*"
+    branches: [pre_prod]
 
 jobs:
   on_merge_pull_request:
