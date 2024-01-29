@@ -1,11 +1,12 @@
 name: Run Pattini
 
 on:
-   pull_request:
-    types: [closed]
-      branches: [*]
+  pull_request:
+    types:
+      - closed
   push:
-    branches: [*]
+    branches:
+      - '*'
   
 
 jobs:
