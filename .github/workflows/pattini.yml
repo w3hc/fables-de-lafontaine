@@ -18,12 +18,13 @@ jobs:
         run: echo "ISSUE_NUMBER=$(echo ${{ github.ref }} | awk -F/ '{print $3}')" >> $GITHUB_ENV
 
       -name: Get pattini.config.json
-        run: echo "CONTRACT=$(cat pattini.config.json | jq -c)" >> $GITHUB_ENV
+        id: get-pattini-config
+        run: echo "CONTRACT=$(cat pattini.config.json)" >> $GITHUB_OUTPUT
 
       - name: Pattini app
         uses: w3hc/pattini@vTest
         with:
-          CONTRACT: ${{ env.CONTRACT }}
+          CONTRACT: ${{ setps.get-pattini-config.outputs.CONTRACT }}
           PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
           ACTION: ${{ github.event_name }}
           ISSUE_NUMBER: ${{ env.ISSUE_NUMBER }}
