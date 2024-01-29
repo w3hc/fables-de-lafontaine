@@ -22,7 +22,6 @@ jobs:
         uses: w3hc/pattini@vTest
         with:
           ISSUE_NUMBER: ${{ steps.extract-issue-number.outputs.issue_number }}
-          PULL_REQUEST_NUMBER: null
           PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
           ACTION: ${{ github.event_name }}
 
