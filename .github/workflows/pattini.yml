@@ -41,5 +41,6 @@ jobs:
           PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
           PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
           ACTION: ${{ github.event_name }}
+          REPOSITORY: ${{ github.repository }}
 
 
