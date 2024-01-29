@@ -27,7 +27,7 @@ jobs:
       - name: Pattini app
         uses: w3hc/pattini@vTest
         with:
-          CONTRACT: ${{ setps.get-pattini-config.outputs.CONTRACT }}
+          CONTRACT: ${{ steps.get-pattini-config.outputs.CONTRACT }}
           PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
           ACTION: ${{ github.event_name }}
           ISSUE_NUMBER: ${{ env.ISSUE_NUMBER }}
