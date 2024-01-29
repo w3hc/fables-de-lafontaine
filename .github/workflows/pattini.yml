@@ -21,15 +21,15 @@ jobs:
           PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
           ACTION: ${{ github.event_name }}
 
-    on-merge-pull-request:
-      runs-on: ubuntu-latest
-      if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged
-      steps:
-        - name: Pattini app
-          uses: w3hc/pattini@vTest
-          with:
-            ISSUE_NUMBER: ${{ github.event.pull_request.number }}
-            PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
-            ACTION: ${{ github.event_name }}
+  on-merge-pull-request:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged
+    steps:
+      - name: Pattini app
+        uses: w3hc/pattini@vTest
+        with:
+          ISSUE_NUMBER: ${{ github.event.pull_request.number }}
+          PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
+          ACTION: ${{ github.event_name }}
 
 
