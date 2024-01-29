@@ -17,19 +17,9 @@ jobs:
       - name: Extract Issue Number
         run: echo "ISSUE_NUMBER=$(echo ${{ github.ref }} | awk -F/ '{print $3}')" >> $GITHUB_ENV
 
-      - name: Get pattini.config.json
-        id: get-pattini-config
-        uses: pCYSl5EDgo/cat@1.0.1
-        with:
-          path: pattini.config.json
-
-      - name: Display Contract
-        run: echo ${{ steps.get-pattini-config.outputs.text }}
-
       - name: Pattini app
         uses: w3hc/pattini@vTest
         with:
-          CONTRACT: ${{ steps.get-pattini-config.outputs.CONTRACT }}
           PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
           ACTION: ${{ github.event_name }}
           ISSUE_NUMBER: ${{ env.ISSUE_NUMBER }}
@@ -44,8 +34,6 @@ jobs:
         id: extract-merged-branch
         run: echo "ISSUE_NUMBER=${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
 
-      # add -name: Get pattini.config.json
-
       - name: Pattini app
         uses: w3hc/pattini@vTest
         with:
@@ -53,7 +41,5 @@ jobs:
           PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
           PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
           ACTION: ${{ github.event_name }}
-
-          #add contract here
 
 
