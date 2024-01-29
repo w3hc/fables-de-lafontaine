@@ -3,10 +3,25 @@ name: Run Pattini
 on:
    pull_request:
     types: [closed]
-    branches: [pre_prod]
+    branches: [*]
+  push:
+    branches: [*]
+  
 
 jobs:
-  on_merge_pull_request:
+  branch-creation-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pattini app
+        if: github.event_name == 'push' && github.event.created
+        uses: w3hc/pattini@vTest
+        with:
+          ISSUE_NUMBER: ${{ github.event.pull_request.number }}
+          PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
+          ACTION: 'create-branch'
+        run: echo ${{ github.event.name}}
+
+    on-merge-pull-request:
     runs-on: ubuntu-latest
     steps:
       - name: Pattini app
@@ -14,3 +29,6 @@ jobs:
         with:
           ISSUE_NUMBER: ${{ github.event.pull_request.number }}
           PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
+          ACTION: 'merge-pull-request'
+
+
