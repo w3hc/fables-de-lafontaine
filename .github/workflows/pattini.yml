@@ -22,7 +22,7 @@ jobs:
         run: echo "CONTRACT=$(cat pattini.config.json)" >> $GITHUB_OUTPUT
 
       - name: Display Contract
-        run: echo ${{ setps.get-pattini-config.outputs.CONTRACT }}
+        run: echo ${{ steps.get-pattini-config.outputs.CONTRACT }}
 
       - name: Pattini app
         uses: w3hc/pattini@vTest
