@@ -20,6 +20,9 @@ jobs:
       - name: Get pattini.config.json
         run: echo "CONTRACT=$(cat pattini.config.json)" >> $GITHUB_ENV
 
+        -name: Display Contract
+        run: echo ${{ env.CONTRACT }}
+
       - name: Pattini app
         uses: w3hc/pattini@vTest
         with:
