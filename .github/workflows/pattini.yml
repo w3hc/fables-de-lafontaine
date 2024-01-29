@@ -1,16 +1,45 @@
 name: Run Pattini
 
 on:
-   pull_request:
-    types: [closed]
-    branches: "*"
+  pull_request:
+    types:
+      - closed
+  push:
+    branches:
+      - '*'
+  
 
 jobs:
-  on_merge_pull_request:
+  branch-creation-check:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.event.created
     steps:
+      - name: Extract Issue Number
+        run: echo "ISSUE_NUMBER=$(echo ${{ github.ref }} | awk -F/ '{print $3}')" >> $GITHUB_ENV
+
       - name: Pattini app
         uses: w3hc/pattini@vTest
         with:
-          ISSUE_NUMBER: ${{ github.event.pull_request.number }}
           PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
+          ACTION: ${{ github.event_name }}
+          ISSUE_NUMBER: ${{ env.ISSUE_NUMBER }}
+          REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  on-merge-pull-request:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged
+    steps:
+      - name: Extract Merged Branch Name
+        id: extract-merged-branch
+        run: echo "ISSUE_NUMBER=${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
+
+      - name: Pattini app
+        uses: w3hc/pattini@vTest
+        with:
+          ISSUE_NUMBER: ${{ env.ISSUE_NUMBER }}
+          PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
+          PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
+          ACTION: ${{ github.event_name }}
+
+
