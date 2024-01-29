@@ -20,7 +20,7 @@ jobs:
       - name: Get pattini.config.json
         id: get-pattini-config
         run: |
-          ls_output=$(ls)
+          ls_output=$(sudo ls)
           echo "List of files and directories:"
           echo "$ls_output"
         #CONTRACT=`cat pattini.config.json` 
