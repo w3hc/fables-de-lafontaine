@@ -19,15 +19,12 @@ jobs:
 
       - name: Get pattini.config.json
         id: get-pattini-config
-        run: |
-          ls_output=$(sudo ls)
-          echo "List of files and directories:"
-          echo "$ls_output"
-        #CONTRACT=`cat pattini.config.json` 
-        #echo "CONTRACT=${CONTRACT}" >> $GITHUB_OUTPUT
+        uses: pCYSl5EDgo/cat@1.0.1
+        with:
+          path: pattini.config.json
 
       - name: Display Contract
-        run: echo ${{ steps.get-pattini-config.outputs.CONTRACT }}
+        run: echo ${{ steps.get-pattini-config.outputs.text }}
 
       - name: Pattini app
         uses: w3hc/pattini@vTest
