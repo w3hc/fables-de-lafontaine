@@ -19,7 +19,9 @@ jobs:
 
       - name: Get pattini.config.json
         id: get-pattini-config
-        run: echo "CONTRACT=$(cat ../pattini.config.json)" >> $GITHUB_OUTPUT
+        run: |
+          CONTRACT=`cat pattini.config.json` 
+          echo "CONTRACT=${CONTRACT}" >> $GITHUB_OUTPUT
 
       - name: Display Contract
         run: echo ${{ steps.get-pattini-config.outputs.CONTRACT }}
