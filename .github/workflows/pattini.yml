@@ -16,12 +16,12 @@ jobs:
     steps:
       - name: Extract Issue Number
         id: extract-issue-number
-        run: echo "::set-output name=issue_number::$(echo $GITHUB_REF | awk -F/ '{print $3}')"
+        run: echo "ISSUE_NUMBER=$(echo ${{ github.ref }} | awk -F/ '{print $3}')" >> $GITHUB_ENV
 
       - name: Pattini app
         uses: w3hc/pattini@vTest
         with:
-          ISSUE_NUMBER: ${{ steps.extract-issue-number.outputs.issue_number }}
+          ISSUE_NUMBER: ${{ env.ISSUE_NUMBER }}
           PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
           ACTION: ${{ github.event_name }}
 
@@ -31,12 +31,12 @@ jobs:
     steps:
       - name: Extract Merged Branch Name
         id: extract-merged-branch
-        run: echo "::set-output name=merged_branch::${{ github.event.pull_request.head.ref }}"
+        run: echo "ISSUE_NUMBER=${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
 
       - name: Pattini app
         uses: w3hc/pattini@vTest
         with:
-          ISSUE_NUMBER: ${{ steps.extract-merged-branch.outputs.merged_branch }}
+          ISSUE_NUMBER: ${{ env.ISSUE_NUMBER }}
           PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
           PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
           ACTION: ${{ github.event_name }}
