@@ -3,7 +3,7 @@ name: Run Pattini
 on:
    pull_request:
     types: [closed]
-    branches: [*]
+      branches: [*]
   push:
     branches: [*]
   
