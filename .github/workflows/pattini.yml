@@ -19,7 +19,7 @@ jobs:
         with:
           ISSUE_NUMBER: ${{ github.event.pull_request.number }}
           PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
-          ACTION: 'create-branch'
+          ACTION: ${{ github.event_name }}
 
     on-merge-pull-request:
       runs-on: ubuntu-latest
@@ -30,6 +30,6 @@ jobs:
           with:
             ISSUE_NUMBER: ${{ github.event.pull_request.number }}
             PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
-            ACTION: 'merge-pull-request'
+            ACTION: ${{ github.event_name }}
 
 
