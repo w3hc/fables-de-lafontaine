@@ -6,8 +6,7 @@ on:
       - closed
   push:
     branches:
-      - '*'
-  
+      - '*' 
 
 jobs:
   branch-creation-check:
@@ -42,5 +41,3 @@ jobs:
           PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
           ACTION: ${{ github.event_name }}
           REPOSITORY: ${{ github.repository }}
-
-
