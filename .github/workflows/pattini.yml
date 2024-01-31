@@ -36,8 +36,8 @@ jobs:
       - name: Pattini app
         uses: w3hc/pattini@vTest
         with:
-          ISSUE_NUMBER: ${{ env.ISSUE_NUMBER }}
-          PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
           PRIVATE_KEY: ${{ secrets.WALLET_OWNER_PRIVATE_KEY }}
           ACTION: ${{ github.event_name }}
+          ISSUE_NUMBER: ${{ env.ISSUE_NUMBER }}
+          PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
           REPOSITORY: ${{ github.repository }}
